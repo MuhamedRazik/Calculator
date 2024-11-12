@@ -52,14 +52,6 @@ const multiply = function (value1, value2) {
 const divide = function (value1, value2) {
     return value1 / value2;
 };
-// console.log(add(1,2));
-// console.log(subtract(1,2));
-// console.log(multiply(1,2));
-// console.log(divide(1,2));
-
-let firstValue = '';
-let operator = '';
-let secondValue = '';
 
 const operate = function (firstValue,operator,secondValue) {
     if (operator == '+') {
@@ -75,7 +67,128 @@ const operate = function (firstValue,operator,secondValue) {
         return divide(firstValue, secondValue) ;
     };
 };
-// console.log(operate(1,"*",2));
-// console.log(operate(1,"+",2));
-// console.log(operate(1,"-",2));
-// console.log(operate(1,"/",2));
+let firstValue = '';
+let operator = '';
+let secondValue = '';
+let isFirstValue = true;
+
+// console.log(operate(firstValue,operator,secondValue));
+
+numOneBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "1";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "1";
+        display.textContent = secondValue;
+    }
+});
+numTwoBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "2";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "2";
+        display.textContent = secondValue;
+    }
+});
+numThreeBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "3";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "3";
+        display.textContent = secondValue;
+    }
+});
+numFourBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "4";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "4";
+        display.textContent = secondValue;
+    }
+});
+numFiveBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "5";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "5";
+        display.textContent = secondValue;
+    }
+});
+numSixBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "6";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "6";
+        display.textContent = secondValue;
+    }
+});
+numSevenBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "7";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "7";
+        display.textContent = secondValue;
+    }
+});
+numEightBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "8";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "8";
+        display.textContent = secondValue;
+    }
+});
+numNineBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "9";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "9";
+        display.textContent = secondValue;
+    }
+});
+numZeroBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        firstValue += "0";
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += "0";
+        display.textContent = secondValue;
+    }
+});
+dotBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        if(!firstValue.includes(".")) {
+            firstValue += ".";
+            display.textContent = firstValue;
+        }
+        
+    }
+    else {
+        if(!secondValue.includes(".")) {
+            secondValue += ".";
+        display.textContent = secondValue;
+        }
+    }
+});
+equalBtn.addEventListener("click", () => {
+
+});
