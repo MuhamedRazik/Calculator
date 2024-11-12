@@ -1,3 +1,18 @@
+const allBtn = document.querySelectorAll('button');
+// console.log(allBtn);
+allBtn.forEach(button => {
+    button.addEventListener("mouseover", () => {
+        button.style.color = "white";
+        button.style.opacity = "0.5";
+
+    })
+    button.addEventListener("mouseout", () => {
+        button.style.color = "black";
+        button.style.opacity = "1";
+    })
+});
+
+
 const add = function (value1, value2) {
     return value1 + value2;
 };
