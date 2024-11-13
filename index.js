@@ -1,6 +1,7 @@
 const allBtn = document.querySelectorAll('button');
 const allClearBtn = document.getElementById('all-clear');
 const clearBtn = document.getElementById('clear');
+
 const numOneBtn = document.getElementById('num-1');
 const numTwoBtn = document.getElementById('num-2');
 const numThreeBtn = document.getElementById('num-3');
@@ -12,11 +13,13 @@ const numEightBtn = document.getElementById('num-8');
 const numNineBtn = document.getElementById('num-9');
 const numZeroBtn = document.getElementById('num-zero');
 const dotBtn = document.getElementById('dot-symbol');
-const equalBtn = document.getElementById('equal-btn');
+
 const addBtn = document.getElementById('add-btn');
 const subtractBtn = document.getElementById('subtract-btn');
 const multiplyBtn = document.getElementById('multiply-btn');
 const divideBtn = document.getElementById('divide-btn');
+
+const equalBtn = document.getElementById('equal-btn');
 const display = document.getElementById('cal-display');
 
 // hover effect for all button
@@ -53,8 +56,7 @@ let operator = '';
 let secondValue = '';
 let result = '';
 let isFirstValue = true;
-let inputHistory = [];
-
+// function used to calculate by assigning values and operator
 const operate = function (firstValue,operator,secondValue) {
     if (operator == '+') {
         result = add(firstValue, secondValue);
@@ -88,18 +90,15 @@ const displayLimit = function() {
 function numberAssign(valueProvided) {
     if(isFirstValue) {
         firstValue += valueProvided;
-        inputHistory.push(firstValue);
         display.textContent = firstValue;
         displayLimit();
     }
     else {
         secondValue += valueProvided;
-        inputHistory.push(secondValue);
         display.textContent = `${firstValue}${operator}${secondValue}`;
         displayLimit();
     }
 };
-
 numOneBtn.addEventListener("click", () => numberAssign("1"));
 numTwoBtn.addEventListener("click", () => numberAssign("2"));
 numThreeBtn.addEventListener("click", () => numberAssign("3"));
@@ -115,7 +114,6 @@ dotBtn.addEventListener("click", () => {
     if(isFirstValue) {
         if(!firstValue.includes(".")) {
             firstValue += ".";
-            inputHistory.push(firstValue);
             display.textContent = firstValue;
         }
         
@@ -123,7 +121,6 @@ dotBtn.addEventListener("click", () => {
     else {
         if(!secondValue.includes(".")) {
             secondValue += ".";
-            inputHistory.push(secondValue);
             display.textContent = `${firstValue}${operator}${secondValue}`;
         }
     }
@@ -133,7 +130,6 @@ const operatorAssign = function (operatorProvided) {
     if(isFirstValue) {
         if(!operator.includes(operatorProvided)) {
             operator = operatorProvided;
-            inputHistory.push(operator);
             display.textContent = `${firstValue}${operator}`;
             isFirstValue = false;
         }  
@@ -141,14 +137,11 @@ const operatorAssign = function (operatorProvided) {
     else {
         operate(parseFloat(firstValue),operator,parseFloat(secondValue));
         firstValue = result;
-        inputHistory.push(firstValue);
         operator = '';
         secondValue = '';
         if(!operator.includes(operatorProvided)) {
             operator = operatorProvided;
-            inputHistory.push(operator);
             display.textContent = `${firstValue}${operator}`;
-            
             isFirstValue = false;
         }
     }
@@ -166,7 +159,6 @@ const allClear = function() {
     secondValue = '';
     result = '';
     isFirstValue = true;
-    inputHistory = [];
 };
 
 equalBtn.addEventListener("click", () => {
@@ -184,6 +176,7 @@ equalBtn.addEventListener("click", () => {
 });
 
 allClearBtn.addEventListener("click", () => allClear());
+
 clearBtn.addEventListener("click", () => {
     if(result) {
        result = "";
