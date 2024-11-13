@@ -76,14 +76,24 @@ const operate = function (firstValue,operator,secondValue) {
     };
 };
 
+// function to limit maximum number of character supported
+const displayLimit = function() {
+    if (display.textContent.length > 17) {
+        alert("you Have Reached Limit of Character Allowed")
+        display.textContent = display.textContent.slice(0, 17);
+    };
+}
+
 function numberAssign(valueProvided) {
     if(isFirstValue) {
         firstValue += valueProvided;
         display.textContent = firstValue;
+        displayLimit();
     }
     else {
         secondValue += valueProvided;
         display.textContent = `${firstValue}${operator}${secondValue}`;
+        displayLimit();
     }
 };
 
@@ -114,42 +124,32 @@ dotBtn.addEventListener("click", () => {
     }
 });
 
-addBtn.addEventListener("click", () => {
+const operatorAssign = function (operatorProvided) {
     if(isFirstValue) {
-        if(!operator.includes("+")) {
-            operator = "+";
+        if(!operator.includes(operatorProvided)) {
+            operator = operatorProvided;
             display.textContent = `${firstValue}${operator}`;
             isFirstValue = false;
         }  
     }
-})
-subtractBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        if(!operator.includes("-")) {
-            operator = "-";
+    else {
+        operate(parseFloat(firstValue),operator,parseFloat(secondValue));
+        firstValue = result;
+        operator = '';
+        secondValue = '';
+        if(!operator.includes(operatorProvided)) {
+            operator = operatorProvided;
             display.textContent = `${firstValue}${operator}`;
+            
             isFirstValue = false;
-        }  
+        }
     }
-})
-multiplyBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        if(!operator.includes("*")) {
-            operator = "*";
-            display.textContent = `${firstValue}${operator}`;
-            isFirstValue = false;
-        }  
-    }
-})
-divideBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        if(!operator.includes("/")) {
-            operator = "/";
-            display.textContent = `${firstValue}${operator}`;
-            isFirstValue = false;
-        }  
-    }
-})
+};
+addBtn.addEventListener("click", () => operatorAssign("+"));
+subtractBtn.addEventListener("click", () => operatorAssign("-"));
+multiplyBtn.addEventListener("click", () => operatorAssign("*"));
+divideBtn.addEventListener("click", () => operatorAssign("/"));
+
 // function to reset the claculator
 const allClear = function() {
     display.textContent = '';
@@ -167,7 +167,11 @@ equalBtn.addEventListener("click", () => {
         return;
     };
     operate(parseFloat(firstValue),operator,parseFloat(secondValue));
-    display.textContent = `${firstValue}${operator}${secondValue}=${result} `;
+    display.textContent = result;
+    firstValue = result;
+    operator = '';
+    secondValue = '';
+    isFirstValue = true;
 });
 
 allClearBtn.addEventListener("click", () => allClear());
