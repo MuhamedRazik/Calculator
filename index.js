@@ -150,17 +150,26 @@ divideBtn.addEventListener("click", () => {
         }  
     }
 })
-
-equalBtn.addEventListener("click", () => {
-    operate(parseFloat(firstValue),operator,parseFloat(secondValue));
-    display.textContent = `${firstValue}${operator}${secondValue}=${result} `;
-});
-
-allClearBtn.addEventListener("click", () => {
+// function to reset the claculator
+const allClear = function() {
     display.textContent = '';
     firstValue = '';
     operator = '';
     secondValue = '';
     result = '';
     isFirstValue = true;
-})
+};
+
+equalBtn.addEventListener("click", () => {
+    if (firstValue == '' || operator == '' || secondValue == '') {
+        allClear();
+        alert("Please Enter Required Values For Calculation");
+        return;
+    };
+    operate(parseFloat(firstValue),operator,parseFloat(secondValue));
+    display.textContent = `${firstValue}${operator}${secondValue}=${result} `;
+});
+
+allClearBtn.addEventListener("click", () => allClear());
+
+
