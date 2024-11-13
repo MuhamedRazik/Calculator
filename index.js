@@ -53,24 +53,33 @@ const divide = function (value1, value2) {
     return value1 / value2;
 };
 
-const operate = function (firstValue,operator,secondValue) {
-    if (operator == '+') {
-        return add(firstValue, secondValue) ;
-    }
-    else if (operator == '-') {
-        return subtract(firstValue, secondValue) ;
-    }
-    else if (operator == '*') {
-        return multiply(firstValue, secondValue) ;
-    }
-    else if (operator == '/') {
-        return divide(firstValue, secondValue) ;
-    };
-};
 let firstValue = '';
 let operator = '';
 let secondValue = '';
+let result = '';
 let isFirstValue = true;
+
+const operate = function (firstValue,operator,secondValue) {
+    if (operator == '+') {
+        result = add(firstValue, secondValue);
+        return result;
+    }
+    else if (operator == '-') {
+        result = subtract(firstValue, secondValue) ;
+        return result;
+
+    }
+    else if (operator == '*') {
+        result = multiply(firstValue, secondValue) ;
+        return result;
+
+    }
+    else if (operator == '/') {
+        result = divide(firstValue, secondValue) ;
+        return result;
+
+    };
+};
 
 // console.log(operate(firstValue,operator,secondValue));
 
@@ -81,7 +90,7 @@ numOneBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "1";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numTwoBtn.addEventListener("click", () => {
@@ -91,7 +100,7 @@ numTwoBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "2";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numThreeBtn.addEventListener("click", () => {
@@ -101,7 +110,7 @@ numThreeBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "3";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numFourBtn.addEventListener("click", () => {
@@ -111,7 +120,7 @@ numFourBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "4";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numFiveBtn.addEventListener("click", () => {
@@ -121,7 +130,7 @@ numFiveBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "5";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numSixBtn.addEventListener("click", () => {
@@ -131,7 +140,7 @@ numSixBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "6";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numSevenBtn.addEventListener("click", () => {
@@ -141,7 +150,7 @@ numSevenBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "7";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numEightBtn.addEventListener("click", () => {
@@ -151,7 +160,7 @@ numEightBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "8";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numNineBtn.addEventListener("click", () => {
@@ -161,7 +170,7 @@ numNineBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "9";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 numZeroBtn.addEventListener("click", () => {
@@ -171,7 +180,7 @@ numZeroBtn.addEventListener("click", () => {
     }
     else {
         secondValue += "0";
-        display.textContent = secondValue;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
     }
 });
 dotBtn.addEventListener("click", () => {
@@ -185,10 +194,49 @@ dotBtn.addEventListener("click", () => {
     else {
         if(!secondValue.includes(".")) {
             secondValue += ".";
-        display.textContent = secondValue;
+            display.textContent = `${firstValue}${operator}${secondValue}`;
         }
     }
 });
-equalBtn.addEventListener("click", () => {
 
+addBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        if(!operator.includes("+")) {
+            operator = "+";
+            display.textContent = `${firstValue}${operator}`;
+            isFirstValue = false;
+        }  
+    }
+})
+subtractBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        if(!operator.includes("-")) {
+            operator = "-";
+            display.textContent = `${firstValue}${operator}`;
+            isFirstValue = false;
+        }  
+    }
+})
+multiplyBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        if(!operator.includes("*")) {
+            operator = "*";
+            display.textContent = `${firstValue}${operator}`;
+            isFirstValue = false;
+        }  
+    }
+})
+divideBtn.addEventListener("click", () => {
+    if(isFirstValue) {
+        if(!operator.includes("/")) {
+            operator = "/";
+            display.textContent = `${firstValue}${operator}`;
+            isFirstValue = false;
+        }  
+    }
+})
+
+equalBtn.addEventListener("click", () => {
+    operate(parseFloat(firstValue),operator,parseFloat(secondValue));
+    display.textContent = `${firstValue}${operator}${secondValue}=${result} `;
 });
