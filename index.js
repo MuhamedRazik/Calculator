@@ -1,8 +1,6 @@
 const allBtn = document.querySelectorAll('button');
-
 const allClearBtn = document.getElementById('all-clear');
 const clearBtn = document.getElementById('clear');
-
 const numOneBtn = document.getElementById('num-1');
 const numTwoBtn = document.getElementById('num-2');
 const numThreeBtn = document.getElementById('num-3');
@@ -14,13 +12,11 @@ const numEightBtn = document.getElementById('num-8');
 const numNineBtn = document.getElementById('num-9');
 const numZeroBtn = document.getElementById('num-zero');
 const dotBtn = document.getElementById('dot-symbol');
-
 const equalBtn = document.getElementById('equal-btn');
 const addBtn = document.getElementById('add-btn');
 const subtractBtn = document.getElementById('subtract-btn');
 const multiplyBtn = document.getElementById('multiply-btn');
 const divideBtn = document.getElementById('divide-btn');
-
 const display = document.getElementById('cal-display');
 
 // hover effect for all button
@@ -35,8 +31,7 @@ allBtn.forEach(button => {
         button.style.opacity = "1";
     })
 });
-
-
+// operator functions
 const add = function (value1, value2) {
     return value1 + value2;
 };
@@ -81,8 +76,7 @@ const operate = function (firstValue,operator,secondValue) {
     };
 };
 
-// console.log(operate(firstValue,operator,secondValue));
-function numberFunction(valueProvided) {
+function numberAssign(valueProvided) {
     if(isFirstValue) {
         firstValue += valueProvided;
         display.textContent = firstValue;
@@ -93,16 +87,16 @@ function numberFunction(valueProvided) {
     }
 };
 
-numOneBtn.addEventListener("click", () => numberFunction("1"));
-numTwoBtn.addEventListener("click", () => numberFunction("2"));
-numThreeBtn.addEventListener("click", () => numberFunction("3"));
-numFourBtn.addEventListener("click", () => numberFunction("4"));
-numFiveBtn.addEventListener("click", () => numberFunction("5"));
-numSixBtn.addEventListener("click", () => numberFunction("6"));
-numSevenBtn.addEventListener("click", () => numberFunction("7"));
-numEightBtn.addEventListener("click", () => numberFunction("8"));
-numNineBtn.addEventListener("click", () => numberFunction("9"));
-numZeroBtn.addEventListener("click", () => numberFunction("0"));
+numOneBtn.addEventListener("click", () => numberAssign("1"));
+numTwoBtn.addEventListener("click", () => numberAssign("2"));
+numThreeBtn.addEventListener("click", () => numberAssign("3"));
+numFourBtn.addEventListener("click", () => numberAssign("4"));
+numFiveBtn.addEventListener("click", () => numberAssign("5"));
+numSixBtn.addEventListener("click", () => numberAssign("6"));
+numSevenBtn.addEventListener("click", () => numberAssign("7"));
+numEightBtn.addEventListener("click", () => numberAssign("8"));
+numNineBtn.addEventListener("click", () => numberAssign("9"));
+numZeroBtn.addEventListener("click", () => numberAssign("0"));
 
 dotBtn.addEventListener("click", () => {
     if(isFirstValue) {
@@ -163,5 +157,10 @@ equalBtn.addEventListener("click", () => {
 });
 
 allClearBtn.addEventListener("click", () => {
-
+    display.textContent = '';
+    firstValue = '';
+    operator = '';
+    secondValue = '';
+    result = '';
+    isFirstValue = true;
 })
