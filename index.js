@@ -82,107 +82,28 @@ const operate = function (firstValue,operator,secondValue) {
 };
 
 // console.log(operate(firstValue,operator,secondValue));
+function numberFunction(valueProvided) {
+    if(isFirstValue) {
+        firstValue += valueProvided;
+        display.textContent = firstValue;
+    }
+    else {
+        secondValue += valueProvided;
+        display.textContent = `${firstValue}${operator}${secondValue}`;
+    }
+};
 
-numOneBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "1";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "1";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numTwoBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "2";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "2";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numThreeBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "3";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "3";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numFourBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "4";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "4";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numFiveBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "5";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "5";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numSixBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "6";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "6";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numSevenBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "7";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "7";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numEightBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "8";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "8";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numNineBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "9";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "9";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
-numZeroBtn.addEventListener("click", () => {
-    if(isFirstValue) {
-        firstValue += "0";
-        display.textContent = firstValue;
-    }
-    else {
-        secondValue += "0";
-        display.textContent = `${firstValue}${operator}${secondValue}`;
-    }
-});
+numOneBtn.addEventListener("click", () => numberFunction("1"));
+numTwoBtn.addEventListener("click", () => numberFunction("2"));
+numThreeBtn.addEventListener("click", () => numberFunction("3"));
+numFourBtn.addEventListener("click", () => numberFunction("4"));
+numFiveBtn.addEventListener("click", () => numberFunction("5"));
+numSixBtn.addEventListener("click", () => numberFunction("6"));
+numSevenBtn.addEventListener("click", () => numberFunction("7"));
+numEightBtn.addEventListener("click", () => numberFunction("8"));
+numNineBtn.addEventListener("click", () => numberFunction("9"));
+numZeroBtn.addEventListener("click", () => numberFunction("0"));
+
 dotBtn.addEventListener("click", () => {
     if(isFirstValue) {
         if(!firstValue.includes(".")) {
@@ -240,3 +161,7 @@ equalBtn.addEventListener("click", () => {
     operate(parseFloat(firstValue),operator,parseFloat(secondValue));
     display.textContent = `${firstValue}${operator}${secondValue}=${result} `;
 });
+
+allClearBtn.addEventListener("click", () => {
+
+})
