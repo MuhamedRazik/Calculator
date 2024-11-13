@@ -53,6 +53,7 @@ let operator = '';
 let secondValue = '';
 let result = '';
 let isFirstValue = true;
+let inputHistory = [];
 
 const operate = function (firstValue,operator,secondValue) {
     if (operator == '+') {
@@ -87,11 +88,13 @@ const displayLimit = function() {
 function numberAssign(valueProvided) {
     if(isFirstValue) {
         firstValue += valueProvided;
+        inputHistory.push(firstValue);
         display.textContent = firstValue;
         displayLimit();
     }
     else {
         secondValue += valueProvided;
+        inputHistory.push(secondValue);
         display.textContent = `${firstValue}${operator}${secondValue}`;
         displayLimit();
     }
@@ -112,6 +115,7 @@ dotBtn.addEventListener("click", () => {
     if(isFirstValue) {
         if(!firstValue.includes(".")) {
             firstValue += ".";
+            inputHistory.push(firstValue);
             display.textContent = firstValue;
         }
         
@@ -119,6 +123,7 @@ dotBtn.addEventListener("click", () => {
     else {
         if(!secondValue.includes(".")) {
             secondValue += ".";
+            inputHistory.push(secondValue);
             display.textContent = `${firstValue}${operator}${secondValue}`;
         }
     }
@@ -128,6 +133,7 @@ const operatorAssign = function (operatorProvided) {
     if(isFirstValue) {
         if(!operator.includes(operatorProvided)) {
             operator = operatorProvided;
+            inputHistory.push(operator);
             display.textContent = `${firstValue}${operator}`;
             isFirstValue = false;
         }  
@@ -135,10 +141,12 @@ const operatorAssign = function (operatorProvided) {
     else {
         operate(parseFloat(firstValue),operator,parseFloat(secondValue));
         firstValue = result;
+        inputHistory.push(firstValue);
         operator = '';
         secondValue = '';
         if(!operator.includes(operatorProvided)) {
             operator = operatorProvided;
+            inputHistory.push(operator);
             display.textContent = `${firstValue}${operator}`;
             
             isFirstValue = false;
@@ -158,6 +166,7 @@ const allClear = function() {
     secondValue = '';
     result = '';
     isFirstValue = true;
+    inputHistory = [];
 };
 
 equalBtn.addEventListener("click", () => {
@@ -175,5 +184,20 @@ equalBtn.addEventListener("click", () => {
 });
 
 allClearBtn.addEventListener("click", () => allClear());
-
-
+clearBtn.addEventListener("click", () => {
+    if(result) {
+       result = "";
+       allClear();
+       return;
+    }
+    if (secondValue) {
+        secondValue = secondValue.slice(0,-1);
+    }
+    else if (operator) {
+        operator = '';
+    }
+    else if (firstValue) {
+        firstValue = firstValue.slice(0,-1);
+    }
+    display.textContent = `${firstValue}${operator}${secondValue}`;
+});
